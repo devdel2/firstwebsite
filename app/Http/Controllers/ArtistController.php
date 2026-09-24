@@ -12,7 +12,7 @@ class ArtistController extends Controller
     public function index(SpotifyService $spotify){
         $spotifyIds = Artist::pluck('spotify_id')->toArray();
         $artists = $spotify->getArtists($spotifyIds);
-        return view('spotify.artists', [
+        return view('music.bands', [
             'artists' => $artists,
         ]);
     }

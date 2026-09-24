@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BandController;
 use App\Http\Controllers\SpotifyController;
+use App\Http\Controllers\ArtistController;
 
 Route::get('/', function() {
     return view('home');
@@ -33,9 +34,7 @@ Route::prefix("admin")->group(function() {
 // Bands Index and Route grouping
 Route::prefix("bands")->group(function() {
     // Route for bands index
-    Route::get('/', function() {
-        return view('./music/bands');
-    })->name("bands");
+    Route::get('/', [ArtistController::class, 'index'])->name("bands");
     // Route for Daisyhead
     Route::get('/daisyhead', function() {
         return view('./music/daisyhead');
