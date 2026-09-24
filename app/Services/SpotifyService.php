@@ -27,27 +27,30 @@ class SpotifyService
         );
     }
 
-    public function search(string $query)
-    {
+    public function getArtists(array $spotifyIds)
+    { 
         $token = $this->getAccessToken();
+        $artists = [];
 
-        $response = $this->searchRequest($token, $query);
+        foreach($spotifyIds as $spotifyId){
+            // try to get artist info using the current token
+            $response = Http::withToken($token)
+                ->get("https://api.spotify.com/v1/artists/{$spotifyId}");
 
-        if($response->status() === 401) {
-            Cache::forget('spotify_access_token');
-            $token = $this->getAccessToken();
-            $response = $this->searchRequest($token, $query);
+            // if token returns bad auth, get new token and try again
+            if ($response->status() === 401){
+                Cache::forget('spotify_access_token');
+                $token = $this->getAccessToken();
+                $response = Http::withToken($token)
+                    ->get("https://api.spotify.com/v1/artists/{$spotifyId}");
+            }
+
+            if($response->successful()) {
+                $artists[] = $response->json();
+            }
         }
 
-        return $response->json();
+        return $artists;
     }
-
-    private function searchRequest(string $token, string $query) {
-        return Http::withToken($token)
-            ->get('https://api.spotify.com/v1/search', [
-                'q' => $query,
-                'type' => 'artist',
-                'limit' => 10,
-            ]);
-    }
+  
 }
