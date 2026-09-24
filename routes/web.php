@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BandController;
+use App\Http\Controllers\SpotifyController;
 
 Route::get('/', function() {
     return view('home');
@@ -61,3 +62,6 @@ Route::get('/education', function() {
 Route::get('/career', function() {
     return view('career');
 })->name('career');
+
+// Spotify Routes
+Route::get('/spotify/search', [SpotifyController::class, 'search']);
