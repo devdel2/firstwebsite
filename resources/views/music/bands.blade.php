@@ -11,6 +11,9 @@
 @endsection
 
 @section('main-content')
+
+<div id="map"></div>
+
 <h1>My Music</h1>
 
 @foreach ($artists as $artist)
@@ -28,19 +31,33 @@
 
 @endforeach
 
-<div id="map"></div>
-
 @endsection
 
 <script>
+    const locations = @json($trip->locations);
+
     async function initMap() {
         const { Map } = await google.maps.importLibrary("maps");
+        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
         const map = new Map(document.getElementById("map"), {
             center: {
                 lat: 39.7392,
                 lng: -104.9903
             },
-            zoom: 6
+            zoom: 6,
+            mapId: "DEMO_MAP_ID"
+        });
+
+        locations.forEach(location => {
+            const marker = new AdvancedMarkerElement({
+                map: map,
+                position: {
+                    lat: Number(location.latitude),
+                    lng: Number(location.longitude)
+                },
+                title: location.location
+            });
         });
     }
 </script>
