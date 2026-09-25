@@ -40,5 +40,9 @@ return [
     'client_secret' => env('SPOTIFY_CLIENT_SECRET'),
     'redirect_uri' => env('SPOTIFY_REDIRECT_URI'),
     ],
+
+    'google_maps' => [
+        'api_key' => env('GOOGLE_MAPS_KEY')
+    ]
     
 ];

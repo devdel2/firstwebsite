@@ -2,6 +2,12 @@
 
 @section('document-title')
 <title>My Music</title>
+<style>
+    #map {
+        height: 500px;
+        width: 100%;
+    }
+</style>
 @endsection
 
 @section('main-content')
@@ -20,8 +26,24 @@
         </a>
     </div>
 
-    <hr>
-
 @endforeach
 
+<div id="map"></div>
+
 @endsection
+
+<script>
+    async function initMap() {
+        const { Map } = await google.maps.importLibrary("maps");
+        const map = new Map(document.getElementById("map"), {
+            center: {
+                lat: 39.7392,
+                lng: -104.9903
+            },
+            zoom: 6
+        });
+    }
+</script>
+
+<script async src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&loading=async&callback=initMap">
+</script>
