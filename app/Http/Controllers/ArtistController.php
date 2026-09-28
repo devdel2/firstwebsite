@@ -14,6 +14,7 @@ class ArtistController extends Controller
         $spotifyIds = Artist::pluck('spotify_id')->toArray();
         $artists = $spotify->getArtists($spotifyIds);
         $trips = Trip::with([
+            'artist',
             'locations' => function ($query) {
                 $query->orderBy('sequence');
             }

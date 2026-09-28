@@ -56,12 +56,24 @@
         //Loop through each trip
         trips.forEach(trip => {
 
+            const bandColors = {
+                "Dead Set": "#2b4162",
+                "Tradition": "#5b7553",
+                "Daisyhead": "#e55934"
+            }
+
             const locations = trip.locations;
+
+            console.log("Band: ", trip.artist.artist_name);
+            console.log("Color: ", bandColors[trip.artist.artist_name]);
+
+            // select color based on the band
+            const routeColor = bandColors[trip.artist.artist_name];
 
             locations.forEach(location => {
                 const pin = new PinElement({
-                    background: "#4B71AA",
-                    borderColor: "#2b4162",
+                    background: routeColor,
+                    borderColor: routeColor,
                     glyphColor: "#F4F9E9",
                     glyphText: location.sequence.toString()
                 });
@@ -91,7 +103,7 @@
             const route = new Polyline({
                 path: path,
                 geodesic: true,
-                strokeColor: "#2b4162",
+                strokeColor: routeColor,
                 strokeOpacity: 1.0,
                 strokeWeight: 4
             });
