@@ -36,7 +36,7 @@
 <script>
 
     // grabbing the location data
-    const locations = @json($trip->locations);
+    const trips = @json($trips);
 
     // creates the map
     window.initMap = async function () {
@@ -53,46 +53,52 @@
             mapId: "DEMO_MAP_ID"
         });
 
-        // creates the pins at each location
-        locations.forEach(location => {
-            const pin = new PinElement({
-                background: "#4B71AA",
-                borderColor: "#2b4162",
-                glyphColor: "#F4F9E9",
-                glyphText: location.sequence.toString()
+        //Loop through each trip
+        trips.forEach(trip => {
+
+            const locations = trip.locations;
+
+            locations.forEach(location => {
+                const pin = new PinElement({
+                    background: "#4B71AA",
+                    borderColor: "#2b4162",
+                    glyphColor: "#F4F9E9",
+                    glyphText: location.sequence.toString()
+                });
+
+                const marker = new AdvancedMarkerElement({
+                    map: map,
+                    position: {
+                        lat: Number(location.latitude),
+                        lng: Number(location.longitude)
+                    },
+                    title: location.location
+                });
+
+                marker.append(pin);
             });
 
-            const marker = new AdvancedMarkerElement({
-                map: map,
-                position: {
-                    lat: Number(location.latitude),
-                    lng: Number(location.longitude)
-                },
-                title: location.location
+            // creating ordered array of lat/long based on the loaded sequence
+            const path = locations.map(location => ({
+                lat: Number(location.latitude),
+                lng: Number(location.longitude)
+            }));
+
+            // add a duplicate of the first location to end of the path
+            path.push(path[0]);
+
+            // draw the route using polyline api
+            const route = new Polyline({
+                path: path,
+                geodesic: true,
+                strokeColor: "#2b4162",
+                strokeOpacity: 1.0,
+                strokeWeight: 4
             });
 
-            marker.append(pin);
+            route.setMap(map);
+            
         });
-
-        // creating ordered array of lat/long based on the loaded sequence
-        const path = locations.map(location => ({
-            lat: Number(location.latitude),
-            lng: Number(location.longitude)
-        }));
-
-        // add a duplicate of the first location to end of the path
-        path.push(path[0]);
-
-        // draw the route using polyline api
-        const route = new Polyline({
-            path: path,
-            geodesic: true,
-            strokeColor: "#2b4162",
-            strokeOpacity: 1.0,
-            strokeWeight: 4
-        });
-
-        route.setMap(map);
     }
 </script>
 
