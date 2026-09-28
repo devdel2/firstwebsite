@@ -16,6 +16,8 @@ class TripSeeder extends Seeder
     public function run(): void
     {
         $deadSet = Artist::where('artist_name', 'Dead Set')->firstOrFail();
+        $tradition = Artist::where('artist_name', 'Tradition')->firstOrFail();
+        $daisyhead = Artist::where('artist_name', 'Daisyhead')->firstOrFail();
         
         // ETERNAL LOVE TOUR - DEAD SET \\
         $eternalLove = Trip::create([
@@ -393,6 +395,232 @@ class TripSeeder extends Seeder
             'latitude' => 34.40139,
             'longitude' => -118.91778,
             'sequence' => 21
+        ]);
+
+        // DOGWOOD RELEASE TOUR - TRADITION \\
+        $dogwoodRelease = Trip::create([
+            'artist_id' => $tradition->id,
+            'name' => 'Dogwood Release Tour'
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $dogwoodRelease->id,
+            'location' => 'Lincoln, Nebraska',
+            'latitude' => 40.8069,
+            'longitude' => -96.6817,
+            'sequence' => 1
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $dogwoodRelease->id,
+            'location' => 'Oklahoma City, Oklahoma',
+            'latitude' => 35.4676,
+            'longitude' => -97.5164,
+            'sequence' => 2
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $dogwoodRelease->id,
+            'location' => 'Lubbock, Texas',
+            'latitude' => 33.5779,
+            'longitude' => -101.8552,
+            'sequence' => 3
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $dogwoodRelease->id,
+            'location' => 'Albuquerque, New Mexico',
+            'latitude' => 35.08449,
+            'longitude' => -106.65114,
+            'sequence' => 4
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $dogwoodRelease->id,
+            'location' => 'Denver, Colorado',
+            'latitude' => 39.7392,
+            'longitude' => -104.9903,
+            'sequence' => 5
+        ]);
+
+        // SMALLEST LIGHT 10 YEAR - DAISYHEAD \\
+        $smallestLight10Yr = Trip::create([
+            'artist_id' => $daisyhead->id,
+            'name' => 'The Smallest Light 10 Year Anniversary Tour'
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $smallestLight10Yr->id,
+            'location' => 'Charlotte, North Carolina',
+            'latitude' => 35.227085,
+            'longitude' => -80.843124,
+            'sequence' => 1
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $smallestLight10Yr->id,
+            'location' => 'Richmond, Virginia',
+            'latitude' => 37.5407,
+            'longitude' => -77.4360,
+            'sequence' => 2
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $smallestLight10Yr->id,
+            'location' => 'Pittsburg, Pennsylvania',
+            'latitude' => 40.4406,
+            'longitude' => -79.9959,
+            'sequence' => 3
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $smallestLight10Yr->id,
+            'location' => 'Columbus, Ohio',
+            'latitude' => 39.9612,
+            'longitude' => -82.9988,
+            'sequence' => 4
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $smallestLight10Yr->id,
+            'location' => 'Evansville, Indiana',
+            'latitude' => 37.9748,
+            'longitude' => -87.5558,
+            'sequence' => 5
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $smallestLight10Yr->id,
+            'location' => 'Indianapolis, Indiana',
+            'latitude' => 39.7684,
+            'longitude' => -86.1580,
+            'sequence' => 6
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $smallestLight10Yr->id,
+            'location' => 'Milwaukee, Wisconsin',
+            'latitude' => 43.0389025,
+            'longitude' => -87.9064736,
+            'sequence' => 7
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $smallestLight10Yr->id,
+            'location' => 'Chicago, Illinois',
+            'latitude' => 41.881832,
+            'longitude' => -87.623177,
+            'sequence' => 8
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $smallestLight10Yr->id,
+            'location' => 'Oklahoma City, Oklahoma',
+            'latitude' => 35.4676,
+            'longitude' => -97.5164,
+            'sequence' => 9
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $smallestLight10Yr->id,
+            'location' => 'San Antonio, Texas',
+            'latitude' => 29.42412,
+            'longitude' => -98.49363,
+            'sequence' => 10
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $smallestLight10Yr->id,
+            'location' => 'Houston, Texas',
+            'latitude' => 29.7633,
+            'longitude' => -95.3633,
+            'sequence' => 11
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $smallestLight10Yr->id,
+            'location' => 'Birmingham, Alabama',
+            'latitude' => 33.5207,
+            'longitude' => -86.8025,
+            'sequence' => 12
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $smallestLight10Yr->id,
+            'location' => 'Atlanta, Georgia',
+            'latitude' => 33.748995,
+            'longitude' => -84.387982,
+            'sequence' => 13
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $smallestLight10Yr->id,
+            'location' => 'Nashville, Tennessee',
+            'latitude' => 36.165890,
+            'longitude' => -86.784440,
+            'sequence' => 14
+        ]);
+
+        // IYFILMK RELEASE WEST COAST - DAISYHEAD \\
+        $ifYouFindItWC26 = Trip::create([
+            'artist_id' => $daisyhead->id,
+            'name' => 'If You Find It, Let Me Know West Coast Tour 2026'
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $ifYouFindItWC26->id,
+            'location' => 'Colorado Springs, Colorado',
+            'latitude' => 38.833882,
+            'longitude' => -104.821363,
+            'sequence' => 1
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $ifYouFindItWC26->id,
+            'location' => 'Albuquerque, New Mexico',
+            'latitude' => 35.084491,
+            'longitude' => -106.651137,
+            'sequence' => 2
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $ifYouFindItWC26->id,
+            'location' => 'Phoenix, Arizona',
+            'latitude' => 33.448376,
+            'longitude' => -112.074036,
+            'sequence' => 3
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $ifYouFindItWC26->id,
+            'location' => 'Los Angeles, California',
+            'latitude' => 34.052235,
+            'longitude' => -118.243683,
+            'sequence' => 4
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $ifYouFindItWC26->id,
+            'location' => 'Santa Ana, California',
+            'latitude' => 33.745571,
+            'longitude' => -117.867836,
+            'sequence' => 5
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $ifYouFindItWC26->id,
+            'location' => 'Bakersfield, California',
+            'latitude' => 35.373292,
+            'longitude' => -119.018713,
+            'sequence' => 6
+        ]);
+
+        TripLocation::create([
+            'trip_id' => $ifYouFindItWC26->id,
+            'location' => 'Salt Lake City, Utah',
+            'latitude' => 40.760780,
+            'longitude' => -111.891047,
+            'sequence' => 7
         ]);
 
     }
