@@ -34,22 +34,34 @@
 @endsection
 
 <script>
+
+    // grabbing the location data
     const locations = @json($trip->locations);
 
-    async function initMap() {
-        const { Map } = await google.maps.importLibrary("maps");
-        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+    // creates the map
+    window.initMap = async function () {
+        const { Map, Polyline } = await google.maps.importLibrary("maps");
+        const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
 
         const map = new Map(document.getElementById("map"), {
             center: {
                 lat: 39.7392,
                 lng: -104.9903
             },
-            zoom: 6,
+            zoom: 5,
+            gestureHandling: "cooperative",
             mapId: "DEMO_MAP_ID"
         });
 
+        // creates the pins at each location
         locations.forEach(location => {
+            const pin = new PinElement({
+                background: "#4B71AA",
+                borderColor: "#2b4162",
+                glyphColor: "#DBCFB0",
+                glyphText: location.sequence.toString()
+            });
+
             const marker = new AdvancedMarkerElement({
                 map: map,
                 position: {
@@ -58,7 +70,29 @@
                 },
                 title: location.location
             });
+
+            marker.append(pin);
         });
+
+        // creating ordered array of lat/long based on the loaded sequence
+        const path = locations.map(location => ({
+            lat: Number(location.latitude),
+            lng: Number(location.longitude)
+        }));
+
+        // add a duplicate of the first location to end of the path
+        path.push(path[0]);
+
+        // draw the route using polyline api
+        const route = new Polyline({
+            path: path,
+            geodesic: true,
+            strokeColor: "#2b4162",
+            strokeOpacity: 1.0,
+            strokeWeight: 4
+        });
+
+        route.setMap(map);
     }
 </script>
 

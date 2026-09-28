@@ -13,7 +13,11 @@ class ArtistController extends Controller
     public function index(SpotifyService $spotify){
         $spotifyIds = Artist::pluck('spotify_id')->toArray();
         $artists = $spotify->getArtists($spotifyIds);
-        $trip = Trip::with('locations')->findOrFail(1);
+        $trip = Trip::with([
+            'locations' => function ($query) {
+                $query->orderBy('sequence');
+            }
+        ])->findOrFail(1);
         return view('music.bands', [
             'artists' => $artists,
             'trip' => $trip,
