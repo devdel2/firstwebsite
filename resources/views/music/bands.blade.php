@@ -58,7 +58,7 @@
             const pin = new PinElement({
                 background: "#4B71AA",
                 borderColor: "#2b4162",
-                glyphColor: "#DBCFB0",
+                glyphColor: "#F4F9E9",
                 glyphText: location.sequence.toString()
             });
 
