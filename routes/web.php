@@ -6,8 +6,12 @@ use App\Http\Controllers\BandController;
 use App\Http\Controllers\SpotifyController;
 use App\Http\Controllers\ArtistController;
 
+// Route::get('/', function() {
+//     return view('home');
+// })->name("home");
+
 Route::get('/', function() {
-    return view('home');
+    return view('vue-home');
 })->name("home");
 
 // Admin routes
