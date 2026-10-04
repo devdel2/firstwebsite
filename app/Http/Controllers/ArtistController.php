@@ -24,4 +24,9 @@ class ArtistController extends Controller
             'trips' => $trips,
         ]);
     }
+
+    public function apiIndex(){
+        $artists = Artist::all();
+        return response()->json($artists);
+    }
 }
