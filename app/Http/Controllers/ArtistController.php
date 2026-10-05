@@ -25,8 +25,13 @@ class ArtistController extends Controller
         ]);
     }
 
-    public function apiIndex(){
+    public function apiIndex(SpotifyService $spotify){
         $artists = Artist::all();
-        return response()->json($artists);
+        $spotifyIds = $artists->pluck('spotify_id')
+            ->filter()
+            ->values()
+            ->all();
+        $spotifyArtists = $spotify->getArtists($spotifyIds);
+        return response()->json($spotifyArtists);
     }
 }
