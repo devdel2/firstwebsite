@@ -26,12 +26,24 @@ class ArtistController extends Controller
     }
 
     public function apiIndex(SpotifyService $spotify){
-        $artists = Artist::all();
+        $artists = Artist::with([
+            'trips.locations' => function ($query) {
+                $query->orderBy('sequence');
+            }
+        ])->get();
         $spotifyIds = $artists->pluck('spotify_id')
             ->filter()
             ->values()
             ->all();
         $spotifyArtists = $spotify->getArtists($spotifyIds);
-        return response()->json($spotifyArtists);
+        $spotifyById = collect($spotifyArtists)->keyBy('id');
+        $result = $artists->map(function ($artist) use ($spotifyById) {
+            return [
+                'id' => $artist->id,
+                'spotify' => $spotifyById->get($artist->spotify_id),
+                'trips' => $artist->trips,
+            ];
+        });
+        return response()->json($result);
     }
 }

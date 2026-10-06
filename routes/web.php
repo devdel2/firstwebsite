@@ -36,22 +36,22 @@ Route::prefix("admin")->group(function() {
 });
 
 // Bands Index and Route grouping
-Route::prefix("bands")->group(function() {
-    // Route for bands index
-    Route::get('/', [ArtistController::class, 'index'])->name("bands");
-    // Route for Daisyhead
-    Route::get('/daisyhead', function() {
-        return view('./music/daisyhead');
-    })->name("daisyhead");
-    // Route for tradition
-    Route::get('/tradition', function() {
-        return view('./music/tradition');
-    })->name("tradition");
-    // Route for Runoff
-    Route::get('/runoff', function() {
-        return view('./music/runoff');
-    })->name('runoff');
-});
+// Route::prefix("bands")->group(function() {
+//     // Route for bands index
+//     Route::get('/', [ArtistController::class, 'index'])->name("bands");
+//     // Route for Daisyhead
+//     Route::get('/daisyhead', function() {
+//         return view('./music/daisyhead');
+//     })->name("daisyhead");
+//     // Route for tradition
+//     Route::get('/tradition', function() {
+//         return view('./music/tradition');
+//     })->name("tradition");
+//     // Route for Runoff
+//     Route::get('/runoff', function() {
+//         return view('./music/runoff');
+//     })->name('runoff');
+// });
 
 // Band Resource Routes
 
