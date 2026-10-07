@@ -10,5 +10,6 @@
 <style scoped>
     .router-link-active{
         font-weight: bold;
+        border-bottom: 4px solid #A6ECE0;
     }
 </style>

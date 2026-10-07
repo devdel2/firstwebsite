@@ -39,7 +39,12 @@ onMounted(async ()=> {
                                         :alt="band.spotify.name"
                                     >
                                 </div>
-                                <h2 class="text-2xl text-center">{{ band.spotify.name }}</h2>
+                                <a 
+                                    class="block text-2xl text-center hover:text-green-600 hover:italic"
+                                    :href=band.spotify.external_urls.spotify
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >{{ band.spotify.name }}</a>
                             </div>
                             <div class="w-2/3 px-4">
                                 <h2 class="text-2xl text-center">Tours</h2>
