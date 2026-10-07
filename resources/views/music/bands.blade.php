@@ -1,4 +1,4 @@
-@extends('layouts.default')
+<!-- @extends('layouts.default')
 
 @section('document-title')
 <title>My Music</title>
@@ -112,7 +112,7 @@
             
         });
     }
-</script>
+</script> -->
 
-<script async src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&loading=async&callback=initMap">
-</script>
+<!-- <script async src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&loading=async&callback=initMap">
+</script> -->

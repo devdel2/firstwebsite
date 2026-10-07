@@ -23,31 +23,34 @@ onMounted(async ()=> {
 
 <template>
     <section>
-        <h1 class="text-5xl">My Music</h1>
-        <div class="flex">
-            <TripMap :bands="bands"/>
+        <h1 class="text-5xl m-4">My Music</h1>
+        <div class="flex flex-row-reverse mx-4 p-4 border-4 bg-gray-400 rounded-lg">
             <p v-if="loading">Loading Bands...</p>
             <p v-else-if="error">Error: {{ error }}</p>
-            <div v-else>
-                <div v-for="band in bands" :key="band.id">
-                    <div class="rounded-lg flex border-4 w-1/3 box-border p-4 m-4">
-                        <div class="w-1/3">
-                            <img class="rounded-full w-32 h-32 mx-auto" v-if="band.spotify.images.length > 0" 
-                                :src="band.spotify.images[0].url" 
-                                :alt="band.spotify.name"
-                            >
-                            <h2 class="text-2xl text-center">{{ band.spotify.name }}</h2>
-                        </div>
-                        <div class="w-2/3">
-                            <h2 class="text-2xl text-center">Tours</h2>
-                            <ul>
-                                <li v-for="trip in band.trips">{{ trip.name }}</li>
-                            </ul>
+            <template v-else>
+                <TripMap :bands="bands"/>
+                <div class="max-h-125 overflow-y-auto ml-4">
+                    <div v-for="band in bands" :key="band.id">
+                        <div class="rounded-lg flex border-4 box-border p-4 mb-4 mx-auto bg-white">
+                            <div>
+                                <div class="w-36 h-36">
+                                    <img class="rounded-full w-full h-full object-cover" v-if="band.spotify.images.length > 0" 
+                                        :src="band.spotify.images[0].url" 
+                                        :alt="band.spotify.name"
+                                    >
+                                </div>
+                                <h2 class="text-2xl text-center">{{ band.spotify.name }}</h2>
+                            </div>
+                            <div class="w-2/3 px-4">
+                                <h2 class="text-2xl text-center">Tours</h2>
+                                <ul>
+                                    <li class="py-2 cursor-pointer hover:text-green-600 hover:italic" v-for="trip in band.trips">{{ trip.name }}</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    
                 </div>
-            </div>
+            </template>
         </div>
     </section>
 </template>

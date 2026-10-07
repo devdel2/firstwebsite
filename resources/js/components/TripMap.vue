@@ -9,17 +9,17 @@ const props = defineProps({
     }
 });
 
-const map = ref(null);
+//const map = ref(null);
 
 onMounted(async () => {
     setOptions({
         key: import.meta.env.VITE_GOOGLE_MAPS_KEY,
     })
 
-    const { Map } = await importLibrary("maps");
+    const { Map, Polyline } = await importLibrary("maps");
     const { AdvancedMarkerElement, PinElement } = await importLibrary('marker');
 
-    map.value = new Map(document.getElementById('trip-map'), {
+    const bandMap = new Map(document.getElementById('trip-map'), {
         center: {
             lat: 39.7392,
             lng: -104.9903
@@ -35,19 +35,40 @@ onMounted(async () => {
         "Daisyhead": "#e55934"
     }
 
-    const marker = new AdvancedMarkerElement({
-        map: map.value,
-        position: {
-            lat: 39.7392,
-            lng: -104.9903
-        },
-        title: 'Denver'
-    });
+    console.log("props.bands: " + JSON.stringify(props.bands));
 
-    console.log('MARKER CREATED:', marker);
-    console.log('MAP:', map.value);
-    console.log('MARKER POSITION:', marker.position);
-    console.log('MARKER MAP:', marker.map);
+    for (const band of props.bands) {
+        const selColor = bandColors[band.spotify.name];
+        console.log("Selected Color: " + selColor);
+        console.log("Band Obj: " + JSON.stringify(band));
+        for(const trip of band.trips) {
+            console.log("Trip object: " + JSON.stringify(trip));
+            // iterate over each location in the trip and create pins on map
+            for (const locations of trip.locations) {
+
+                // create the pin
+                const pin = new PinElement({
+                    backgroundColor: selColor,
+                    borderColor: selColor,
+                    glyphColor: "#F4F9E9",
+                    glyphText: locations.sequence.toString()
+                });
+
+                // create marker location
+                const marker = new AdvancedMarkerElement({
+                    map: bandMap,
+                    position: {
+                        lat: Number(locations.latitude),
+                        lng: Number(locations.longitude)
+                    },
+                    title: locations.location,
+                });
+
+                // append the pin
+                marker.append(pin);
+            }
+        }
+    }
 
     // for(const band in props.bands){
     //     const selColor = bandColors[props.bands[band].spotify.name];
@@ -60,7 +81,7 @@ onMounted(async () => {
     //                 glyphText: props.bands[band].trips[trip].locations[location].sequence.toString()
     //             });
     //             const marker = new AdvancedMarkerElement({
-    //                 map: map.value,
+    //                 map: bandMap,
     //                 position: {
     //                     lat: Number(props.bands[band].trips[trip].locations[location].latitude),
     //                     lng: Number(props.bands[band].trips[trip].locations[location].longitude)
@@ -78,6 +99,6 @@ onMounted(async () => {
 <template>
     <div
         id="trip-map"
-        style="width: 100%; height: 500px;"
+        style="width: 100%; height: 500px; margin-left: 1rem; margin-right: 1rem;"
     ></div>
 </template>
