@@ -14,6 +14,10 @@ Route::get('/', function() {
     return view('vue-home');
 })->name("home");
 
+Route::fallback(function() {
+    return view('vue-home');
+});
+
 // Admin routes
 Route::prefix("admin")->group(function() {
     // Routes for user admin
