@@ -31,7 +31,7 @@ onMounted(async ()=> {
                 <TripMap :bands="bands"/>
                 <div class="max-h-125 overflow-y-auto ml-4">
                     <div v-for="band in bands" :key="band.id">
-                        <div class="rounded-lg flex border-4 box-border p-4 mb-4 mx-auto bg-white">
+                        <div class="rounded-lg flex flex-col md:flex-row border-4 box-border p-4 mb-4 mx-auto bg-white">
                             <div>
                                 <div class="w-36 h-36">
                                     <img class="rounded-full w-full h-full object-cover" v-if="band.spotify.images.length > 0" 

@@ -1,9 +1,7 @@
 <template>
     <nav class="flex gap-6 p-4 bg-gray-900 text-white sticky top-0 z-50">
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/bands">Bands</RouterLink>
-        <RouterLink to="/education">Education</RouterLink>
-        <RouterLink to="/career">Career</RouterLink>
+        <RouterLink to="/bands">My Music</RouterLink>
     </nav>
 </template>
 
