@@ -1,9 +1,9 @@
 <template>
     <div class="flex flex-col md:flex-row justify-between w-screen">
         <div class="container flex mx-auto flex-col mt-4 p-4 w-fit">
-            <img class="mx-auto rounded-full w-64 h-64 object-cover" src="../../public/images/dev_portrait.jpeg">
-            <h1 class="text-base text-center md:text-5xl font-bold">Devin DeLeon</h1>
-            <p class="text-center">Colorado | (949)842-4973 | ddeleon2@uccs.edu</p>
+            <img class="mx-auto rounded-tl-3xl rounded-br-3xl mb-4 w-64 h-64 object-cover" src="../../public/images/dev_portrait.jpeg">
+            <h1 class="text-base text-center mb-2 md:text-5xl font-bold">Devin DeLeon</h1>
+            <p class="text-center mb-2">Colorado | (949)842-4973 | ddeleon2@uccs.edu</p>
             <div class="mx-auto">
                 <a target="_blank" rel="noopener noreferrer" class="text-base font-semibold underline hover:no-underline text-emerald-600" href="https://www.linkedin.com/in/devin-deleon-4002051ba/">LinkedIn | </a>
                 <a target="_blank" rel="noopener noreferrer" class="text-base font-semibold underline hover:no-underline text-emerald-600" href="https://github.com/devdel2">GitHub</a>
