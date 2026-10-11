@@ -40,7 +40,7 @@ onMounted(async ()=> {
                                     >
                                 </div>
                                 <a 
-                                    class="block text-2xl text-center hover:text-green-600 hover:italic"
+                                    class="block text-2xl text-center underline hover:text-green-600 hover:italic hover:no-underline"
                                     :href=band.spotify.external_urls.spotify
                                     target="_blank"
                                     rel="noopener noreferrer"
