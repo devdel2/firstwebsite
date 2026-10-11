@@ -29,7 +29,7 @@ onMounted(async ()=> {
             <p v-else-if="error">Error: {{ error }}</p>
             <template v-else>
                 <TripMap :bands="bands"/>
-                <div class="max-h-125 overflow-y-auto ml-4">
+                <div class="max-h-125 overflow-y-scroll ml-4">
                     <div v-for="band in bands" :key="band.id">
                         <div class="rounded-lg flex flex-col md:flex-row border-4 box-border p-4 mb-4 mx-auto bg-white">
                             <div>
@@ -45,6 +45,17 @@ onMounted(async ()=> {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >{{ band.spotify.name }}</a>
+                                <div class="flex flex-row justify-center gap-4 mt-2">
+                                    <a :href=band.spotify.external_urls.spotify target="_blank" rel="noopener noreferrer" class="block">
+                                        <img class="mx-auto" src="../../public/images/socials/spotify.svg" alt="Spotify Logo">
+                                    </a>
+                                    <a :href=band.instagram target="_blank" rel="noopener noreferrer" class="block">
+                                        <img class="mx-auto" src="../../public/images/socials/instagram.svg" alt="Instagram Logo">
+                                    </a>
+                                    <a :href=band.youtube target="_blank" rel="noopener noreferrer" class="block">
+                                        <img class="mx-auto" src="../../public/images/socials/youtube.svg" alt="YouTube Logo">
+                                    </a>
+                                </div>  
                             </div>
                             <div class="w-2/3 px-4">
                                 <h2 class="text-2xl text-center">Tours</h2>

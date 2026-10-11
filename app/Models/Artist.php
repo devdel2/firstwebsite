@@ -10,7 +10,9 @@ class Artist extends Model
 {
     protected $fillable = [
         'artist_name', 
-        'spotify_id'
+        'spotify_id',
+        'instagram',
+        'youtube'
     ];
 
     public function trips(): HasMany {

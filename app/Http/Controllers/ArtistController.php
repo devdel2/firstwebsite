@@ -42,6 +42,8 @@ class ArtistController extends Controller
                 'id' => $artist->id,
                 'spotify' => $spotifyById->get($artist->spotify_id),
                 'trips' => $artist->trips,
+                'instagram' => $artist->instagram,
+                'youtube' => $artist->youtube,
             ];
         });
         return response()->json($result);
