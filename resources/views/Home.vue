@@ -69,7 +69,7 @@
                     <li>Spotify and Google Maps API to show artist data and display completed tours</li>
                     <li>Displays full stack MVC concept application</li>
                 </ul>
-                <a target="_blank" rel="noopener noreferrer" class="text-base md:text-xl font-semibold underline hover:no-underline text-emerald-600" href="https://github.com/devdel2/cs3110_Apex_Team_Generator">Apex Legends Team Generator</a>
+                <a target="_blank" rel="noopener noreferrer" class="text-base md:text-xl font-semibold underline hover:no-underline text-emerald-600" href="https://main.d3uipkoxlmeg5l.amplifyapp.com/">Apex Legends Team Generator</a>
                 <h3 class="text-base text-md italic">Web App. | React, AWS</h3>
                 <ul class="list-disc ml-8 mb-4">
                     <li>Built understanding of React Properties and JSX</li>
